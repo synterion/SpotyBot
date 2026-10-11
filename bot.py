@@ -129,7 +129,7 @@ class MyComponent(commands.Component):
             result = await asyncio.to_thread(sp.search, q=song, type="track", limit=1)
             items = result["tracks"]["items"]
             if not items:
-                await ctx.reply(f"Aucun resultat pout {song}.")
+                await ctx.reply(f"Aucun résultat pour {song}.")
                 return
 
             track = items[0]
