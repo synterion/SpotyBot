@@ -77,7 +77,7 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 Fermez puis rouvrez le terminal, puis :
 
 ```bash
-git clone https://github.com/<votre-utilisateur>/spotybot.git
+git clone https://github.com/synterion/spotybot.git
 cd spotybot
 uv sync
 ```
