@@ -26,6 +26,7 @@ Bot Twitch écrit en **Python** qui permet aux viewers de demander des musiques 
 |---|---|---|
 | `!music <titre ou artiste + titre>` | Tout le monde | Cherche le morceau sur Spotify et l'ajoute à la file de lecture. |
 | `!queue` | Tout le monde | Affiche les prochains morceaux de la file Spotify. |
+| `!playlist` | Tout le monde | Affiche le lien de la playlist en cour, si elle est publique. |
 
 Détails utiles :
 
@@ -33,6 +34,7 @@ Détails utiles :
 - **Anti-doublon** : un morceau déjà présent dans la file, ou en cours de lecture, est refusé. La comparaison se fait sur l'identifiant Spotify, mais aussi sur le couple titre + artiste, pour éviter qu'une autre version du même morceau passe.
 - Messages d'erreur clairs dans le chat : aucun résultat, aucune lecture Spotify active, compte non Premium, Spotify indisponible.
 - `!queue` affiche aussi les prochains titres de la playlist ou de l'album en cours, car c'est ce que renvoie Spotify.
+- `!playlist` affiche uniquement le nom et l'url de la playlist si elle est publique 
 
 ## Comment ça marche
 
@@ -327,6 +329,7 @@ Pour mettre à jour : `uv lock --upgrade` puis `uv sync`. Pensez à publier `uv.
 - Fournissez un `.env.example` (sans vraies valeurs) pour documenter la configuration.
 - Si un secret a été publié par erreur, **régénérez-le** immédiatement (*New Secret* dans la console Twitch, *Reset secret* dans le dashboard Spotify), puis supprimez les tokens associés. Retirer le fichier d'un commit ne suffit pas, il reste dans l'historique Git.
 - Pour révoquer les accès : [twitch.tv/settings/connections](https://www.twitch.tv/settings/connections) côté Twitch et [spotify.com/account/apps](https://www.spotify.com/account/apps) côté Spotify.
+- Les playlists Spotify affichent votre nom d'utilisateur ; par conséquent, il est recommandé d'utiliser un pseudo sur votre compte Spotify.
 
 ## Dépannage
 

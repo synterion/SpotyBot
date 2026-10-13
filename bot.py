@@ -160,6 +160,7 @@ class MyComponent(commands.Component):
         viewer = ctx.chatter.name
 
         print(f"[{ctx.broadcaster.name}] {viewer} demande : {song}")
+
         
 
     @commands.command()
@@ -171,7 +172,7 @@ class MyComponent(commands.Component):
             await ctx.reply("Impossible de lire la file ")
             return
 
-        upcoming = data.get("queue", [])[:10]
+        upcoming = data.get("queue", [])[:5]
         if not upcoming:
             await ctx.reply("La file d'attente est vide")
             return
@@ -182,6 +183,34 @@ class MyComponent(commands.Component):
             parts.append(f"{i}. {artist} - {t['name']}")
 
         await ctx.reply("Prochains morceaux : " + " | ".join(parts))
+
+    @commands.command()
+    async def playlist(self, ctx: commands.Context) -> None:
+        """!playlist : Affiche lien de la playlist en cours"""
+        try:
+            info = await asyncio.to_thread(sp.current_playback)
+
+            if info and info.get("context"):
+                context = info["context"]
+                if context["type"] == "playlist":
+                    playlist_id = context["uri"].split(":")[-1] 
+                    playlist = await asyncio.to_thread(sp.playlist, playlist_id, fields="name,public,external_urls" )
+
+                    if not playlist.get("public") is False:
+                       url = playlist["external_urls"]["spotify"]
+                       name = playlist["name"]
+
+                       await ctx.reply(f"Playlist {name} en cours : {url}") 
+
+                else:
+                    await ctx.reply("Pas de playlist en cours")
+
+                
+        except spotipy.SpotifyException:
+            await ctx.reply("Impossible de lire la playlist")
+            return
+
+
 
 
 async def setup_database(db: asqlite.Pool) -> tuple[list[tuple[str, str]], list[eventsub.SubscriptionPayload]]:
