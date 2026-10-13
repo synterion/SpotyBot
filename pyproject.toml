@@ -1,0 +1,12 @@
+[project]
+name = "spotybot"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "asqlite>=2.0.0",
+    "dotenv>=0.9.9",
+    "spotipy>=2.26.0",
+    "twitchio>=3",
+]

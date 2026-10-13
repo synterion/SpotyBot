@@ -1,0 +1,6 @@
+tokens.db
+.env
+.cache
+.venv/
+__pycache__/
+node_modules/
